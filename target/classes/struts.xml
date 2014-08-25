@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="false" />
+	<package name="default" namespace="/" extends="struts-default">
+
+		<result-types>
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+
+		<interceptors>
+			<interceptor name="AuthenticationInterceptor"
+				class="com.nagarro.assignments.assignment9.interceptor.AuthenticationInterceptor" />
+			<interceptor-stack name="customInterceptorStack">
+				<interceptor-ref name="AuthenticationInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<global-results>
+			<result name="do-login" type="redirect">do-login.action</result>
+		</global-results>
+
+
+	</package>
+	<constant name="struts.convention.default.parent.package"
+		value="default" />
+</struts>
